@@ -1,13 +1,13 @@
-'use strict';
-Object.defineProperty(exports, '__esModule', { value: true });
-const React = require('react');
-const react_1 = require('react');
-const context_1 = require('./context');
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = require("react");
+const react_1 = require("react");
+const context_1 = require("./context");
 class ResponsivenessProvider extends react_1.Component {
     constructor(props) {
         super(props);
         this.breakpointsMap = {};
-        this.mediaQueryChanged = mq => {
+        this.mediaQueryChanged = (mq) => {
             const mqIndex = this.breakpointsMap[mq.media];
             if (mqIndex !== undefined) {
                 const index = this.state.breakpoints.indexOf(mqIndex);
@@ -17,7 +17,8 @@ class ResponsivenessProvider extends react_1.Component {
                             breakpoints: [...this.state.breakpoints, mqIndex],
                         });
                     }
-                } else {
+                }
+                else {
                     if (index !== -1) {
                         let newBreakpoints = [...this.state.breakpoints];
                         newBreakpoints.splice(index, 1);
@@ -45,12 +46,9 @@ class ResponsivenessProvider extends react_1.Component {
         };
     }
     render() {
-        return React.createElement(
-            context_1.Provider,
-            {
-                value: {
-                    breakpoints: this.state.breakpoints,
-        } }, this.props.children));
+        return (React.createElement(context_1.Provider, { value: {
+                breakpoints: this.state.breakpoints,
+            } }, this.props.children));
     }
 }
 exports.default = ResponsivenessProvider;
