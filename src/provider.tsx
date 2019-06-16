@@ -2,6 +2,9 @@ import * as React from 'react';
 import { Component } from 'react';
 import { Provider } from './context';
 
+interface StringMap {
+    [s: string]: number;
+}
 interface ResponsivenessProps {
     breakpoints: string[];
     breakpoint?: number;
@@ -11,7 +14,7 @@ export default class ResponsivenessProvider extends Component<ResponsivenessProp
         breakpoints: number[];
     };
 
-    private breakpointsMap: any = {};
+    private breakpointsMap: StringMap = {};
 
     public constructor(props: ResponsivenessProps) {
         super(props);

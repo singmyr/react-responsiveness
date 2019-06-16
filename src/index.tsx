@@ -2,8 +2,16 @@ import * as React from 'react';
 export { default as ResponsivenessProvider } from './provider';
 import { Consumer } from './context';
 
-export const withResponsiveness = (C: any): React.ReactNode => {
-    return function Responsiveness(props: any): React.ReactNode {
-        return <Consumer>{(context: any): React.ReactNode => <C {...props} responsive={context} />}</Consumer>;
+interface ContextInterface {
+    breakpoints: number[];
+}
+interface RendererProps {
+    responsive: ContextInterface;
+}
+export const withResponsiveness = (C: React.ComponentClass<RendererProps>): React.ReactNode => {
+    return function Responsiveness(props: {}): React.ReactNode {
+        return (
+            <Consumer>{(context: ContextInterface): React.ReactNode => <C {...props} responsive={context} />}</Consumer>
+        );
     };
 };
