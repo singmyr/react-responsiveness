@@ -29,9 +29,17 @@ class ResponsivenessProvider extends react_1.Component {
                 }
             }
         };
+        const { breakpoints, breakpoint } = props;
         let matched = [];
+        if (breakpoint) {
+            if (breakpoint < breakpoints.length) {
+                matched.push(breakpoint);
+            }
+            else {
+            }
+        }
         if (typeof window !== 'undefined') {
-            props.breakpoints.forEach((bp, i) => {
+            breakpoints.forEach((bp, i) => {
                 const bpString = `(max-width: ${bp})`;
                 let mq = window.matchMedia(bpString);
                 if (mq.matches) {

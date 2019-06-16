@@ -4,6 +4,7 @@ import { Provider } from './context';
 
 interface ResponsivenessProps {
     breakpoints: string[];
+    breakpoint?: number;
 }
 export default class ResponsivenessProvider extends Component<ResponsivenessProps> {
     public state: {
@@ -15,9 +16,18 @@ export default class ResponsivenessProvider extends Component<ResponsivenessProp
     public constructor(props: ResponsivenessProps) {
         super(props);
 
+        const { breakpoints, breakpoint } = props;
         let matched = [] as number[];
+
+        if (breakpoint) {
+            if (breakpoint < breakpoints.length) {
+                matched.push(breakpoint);
+            } else {
+                // @todo: Throw error because the breakpoint is not available.
+            }
+        }
         if (typeof window !== 'undefined') {
-            props.breakpoints.forEach(
+            breakpoints.forEach(
                 (bp, i): void => {
                     const bpString = `(max-width: ${bp})`;
                     let mq = window.matchMedia(bpString);
